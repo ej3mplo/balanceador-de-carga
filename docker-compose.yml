@@ -1,0 +1,29 @@
+version: '3.2'
+services:
+  nodo1:
+    build:
+      context: "./nodo"
+    image: "nodo1"
+  nodo2:
+    build:
+      context: "./nodo"
+    image: "nodo2"
+  nodo3:
+    build:
+      context: "./nodo"
+    image: "nodo3"
+  nodo4:
+    build:
+      context: "./nodo"
+    image: "nodo4"
+  balanceador-de-carga:
+    build:
+      context: "./balanceador-de-carga"
+    image: balanceador-de-carga
+    ports:
+      - "80:80"
+    links:
+      - "nodo1:nodo1"
+      - "nodo2:nodo2"
+      - "nodo3:nodo3"
+      - "nodo4:nodo4"
